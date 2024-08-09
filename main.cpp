@@ -11,7 +11,6 @@ auto spawnNew(std::vector<std::vector<int>>& grid)
     int randomx = dist6(rng);
     int randomy = dist6(rng);
 
-    // now assign that to the right position in the grid.
     grid[randomx][randomy] = 1;
 }
 
@@ -19,7 +18,6 @@ auto moveBoardLeft(std::vector<std::vector<int>>& grid) -> void
 {
     for (int i = 0; i < grid.size(); i++)
     {
-        // Step 1: Shift all non-zero values to the left
         int position = 0;
         for (int j = 0; j < grid[i].size(); j++)
         {
@@ -32,18 +30,16 @@ auto moveBoardLeft(std::vector<std::vector<int>>& grid) -> void
             }
         }
 
-        // Step 2: Combine adjacent tiles if they are equal
         for (int j = 0; j < grid[i].size() - 1; j++)
         {
             if (grid[i][j] != 0 && grid[i][j] == grid[i][j + 1])
             {
                 grid[i][j] *= 2;
                 grid[i][j + 1] = 0;
-                j++;  // Skip next tile as it's already combined
+                j++;
             }
         }
 
-        // Step 3: Shift again to the left after combining
         position = 0;
         for (int j = 0; j < grid[i].size(); j++)
         {
@@ -57,7 +53,6 @@ auto moveBoardLeft(std::vector<std::vector<int>>& grid) -> void
         }
     }
 
-    // Call to the function that spawns a new tile (not provided in your code)
     spawnNew(grid);
 }
 
@@ -65,7 +60,6 @@ auto moveBoardDown(std::vector<std::vector<int>>& grid) -> void
 {
     for (int j = 0; j < grid[0].size(); j++)
     {
-        // Step 1: Shift all non-zero values down
         int position = grid.size() - 1;
         for (int i = grid.size() - 1; i >= 0; i--)
         {
@@ -78,18 +72,16 @@ auto moveBoardDown(std::vector<std::vector<int>>& grid) -> void
             }
         }
 
-        // Step 2: Combine adjacent tiles if they are equal
         for (int i = grid.size() - 1; i > 0; i--)
         {
             if (grid[i][j] != 0 && grid[i][j] == grid[i - 1][j])
             {
                 grid[i][j] *= 2;
                 grid[i - 1][j] = 0;
-                i--;  // Skip next tile as it's already combined
+                i--;
             }
         }
 
-        // Step 3: Shift again down after combining
         position = grid.size() - 1;
         for (int i = grid.size() - 1; i >= 0; i--)
         {
@@ -110,7 +102,6 @@ auto moveBoardRight(std::vector<std::vector<int>>& grid) -> void
 {
     for (int i = 0; i < grid.size(); i++)
     {
-        // Step 1: Shift all non-zero values to the right
         int position = grid[i].size() - 1;
         for (int j = grid[i].size() - 1; j >= 0; j--)
         {
@@ -123,18 +114,16 @@ auto moveBoardRight(std::vector<std::vector<int>>& grid) -> void
             }
         }
 
-        // Step 2: Combine adjacent tiles if they are equal
         for (int j = grid[i].size() - 1; j > 0; j--)
         {
             if (grid[i][j] != 0 && grid[i][j] == grid[i][j - 1])
             {
                 grid[i][j] *= 2;
                 grid[i][j - 1] = 0;
-                j--;  // Skip next tile as it's already combined
+                j--;
             }
         }
 
-        // Step 3: Shift again to the right after combining
         position = grid[i].size() - 1;
         for (int j = grid[i].size() - 1; j >= 0; j--)
         {
@@ -155,7 +144,6 @@ auto moveBoardUp(std::vector<std::vector<int>>& grid) -> void
 {
     for (int j = 0; j < grid[0].size(); j++)
     {
-        // Step 1: Shift all non-zero values up
         int position = 0;
         for (int i = 0; i < grid.size(); i++)
         {
@@ -168,18 +156,15 @@ auto moveBoardUp(std::vector<std::vector<int>>& grid) -> void
             }
         }
 
-        // Step 2: Combine adjacent tiles if they are equal
         for (int i = 0; i < grid.size() - 1; i++)
         {
             if (grid[i][j] != 0 && grid[i][j] == grid[i + 1][j])
             {
                 grid[i][j] *= 2;
                 grid[i + 1][j] = 0;
-                i++;  // Skip next tile as it's already combined
             }
         }
 
-        // Step 3: Shift again up after combining
         position = 0;
         for (int i = 0; i < grid.size(); i++)
         {
