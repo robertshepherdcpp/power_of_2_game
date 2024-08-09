@@ -183,7 +183,7 @@ auto moveBoardUp(std::vector<std::vector<int>>& grid) -> void
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(500, 500), "Power of 2 game");
 
     // if 0 nothing there, otherwise number is the value on the square. 5 x 5 grid
     std::vector<std::vector<int>> grid{
